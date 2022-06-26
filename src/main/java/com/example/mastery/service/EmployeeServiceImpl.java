@@ -6,12 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
+
+    private EmployeeDao employeeDao;
 
     @Autowired
-    EmployeeDao employeeDao;
+    public EmployeeServiceImpl(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
+
 
     @Override
     public Employee saveEmployee(Employee employee) {
@@ -34,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public List<Employee> allEmployees() {
-        return employeeDao.allEmployees();
+    public List<Employee> getAllEmployees() {
+        return employeeDao.getAllEmployees();
     }
 }
